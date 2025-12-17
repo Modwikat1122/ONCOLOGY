@@ -92,6 +92,9 @@ body {
     object-fit: contain; /* الحفاظ على تناسق الصورة */
     border-radius: 5px;  /* اختياري لإعطاء حواف ناعمة */
 }
+.logo i {
+    font-size: 2rem; /* لم يعد ضرورياً */
+}
 
 .main-nav {
     display: flex;
