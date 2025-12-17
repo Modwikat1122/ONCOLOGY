@@ -93,7 +93,10 @@ body {
     border-radius: 5px;  /* اختياري لإعطاء حواف ناعمة */
 }
 
-.logo i { font-size: 2rem; }
+.logo i { 
+    font-size: 2rem;
+}
+
 .main-nav 
 {
     display: flex;
