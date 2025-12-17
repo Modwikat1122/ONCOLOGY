@@ -91,11 +91,7 @@ body {
     height: 40px;        /* ارتفاع متناسق */
     object-fit: contain; /* الحفاظ على تناسق الصورة */
     border-radius: 5px;  /* اختياري لإعطاء حواف ناعمة */
-}
-.logo i {
-    font-size: 2rem; /* لم يعد ضرورياً */
-}
-
+} .logo i { font-size: 2rem; }
 .main-nav {
     display: flex;
     gap: 2rem;
