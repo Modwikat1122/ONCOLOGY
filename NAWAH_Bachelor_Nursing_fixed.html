@@ -1,0 +1,840 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بكالوريوس التمريض | NAWAH</title>
+
+<style>
+:root {
+  --navy: #123b5d;
+  --burgundy: #9e2636;
+  --light: #f4f7fa;
+  --white: #ffffff;
+  --text: #243447;
+  --muted: #718096;
+  --border: #e3e9ef;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Tahoma, sans-serif;
+  background: var(--light);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+button, a {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: auto;
+}
+
+/* Header */
+.header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.brand {
+  color: var(--navy);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.brand span {
+  color: var(--burgundy);
+}
+
+.header-label {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #123b5d, #1c567e);
+  color: white;
+  padding: 48px 0;
+}
+
+.hero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(26px, 5vw, 38px);
+  line-height: 1.4;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 0;
+  color: #e6eef5;
+}
+
+.hero-tag {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 12px;
+  border: 1px solid #ffffff55;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* Main */
+.main {
+  padding: 32px 0 55px;
+}
+
+.section-heading {
+  margin-bottom: 20px;
+}
+
+.section-heading h2 {
+  margin: 0 0 5px;
+  color: var(--navy);
+  font-size: 24px;
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.subjects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.subject-card {
+  align-self: start;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px #123b5d08;
+}
+
+.subject-card[open] {
+  border-color: #b9cbd9;
+}
+
+.subject-card summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 17px;
+}
+
+.subject-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.subject-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #edf3f8;
+  color: var(--navy);
+  font-size: 21px;
+}
+
+.subject-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.subject-info strong {
+  display: block;
+  color: var(--navy);
+  font-size: 15px;
+}
+
+.subject-info small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.chevron {
+  color: var(--muted);
+  transition: transform .2s;
+}
+
+.subject-card[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.lecture-list {
+  border-top: 1px solid var(--border);
+  padding: 8px 12px 12px;
+}
+
+.lecture {
+  padding: 12px 5px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.lecture:last-child {
+  border-bottom: 0;
+}
+
+.lecture-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.lecture-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.action {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  border-radius: 7px;
+  padding: 7px 10px;
+  font-size: 12px;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+
+.action:hover {
+  opacity: .85;
+}
+
+.watch-btn {
+  background: var(--navy);
+  color: white;
+}
+
+.pdf-btn {
+  background: #f8e9eb;
+  color: var(--burgundy);
+}
+
+.download-btn {
+  background: #eaf4ee;
+  color: #216c43;
+}
+
+.action:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+/* Inline video player */
+.video-section {
+  margin-top: 28px;
+  padding: 18px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 5px 20px #123b5d0a;
+  scroll-margin-top: 20px;
+}
+
+.video-section[hidden] {
+  display: none;
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.player-header h3 {
+  color: var(--navy);
+  font-size: 17px;
+  margin: 0;
+}
+
+.close-btn {
+  border: 0;
+  background: #f0f2f5;
+  color: #3d4b5a;
+  border-radius: 8px;
+  padding: 7px 12px;
+  white-space: nowrap;
+}
+
+.video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0a0a0a;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.video-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.player-note {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 10px 0 0;
+}
+
+/* PDF modal */
+.pdf-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(8, 23, 36, .78);
+}
+
+.pdf-modal.active {
+  display: flex;
+}
+
+.pdf-dialog {
+  display: flex;
+  flex-direction: column;
+  width: min(1000px, 100%);
+  height: min(88vh, 850px);
+  background: white;
+  border-radius: 14px;
+  padding: 15px;
+  overflow: hidden;
+}
+
+.pdf-dialog .player-header {
+  flex-shrink: 0;
+}
+
+.pdf-dialog iframe {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  border: 0;
+  background: #f0f0f0;
+  border-radius: 8px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.modal-actions a {
+  text-decoration: none;
+}
+
+/* Footer */
+.footer {
+  background: var(--navy);
+  color: white;
+  padding: 22px 0;
+  text-align: center;
+  font-size: 13px;
+}
+
+.footer p {
+  margin: 3px 0;
+}
+
+.footer .subtle {
+  color: #d0dce6;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 700px) {
+  .subjects {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 35px 0;
+  }
+
+  .header-label {
+    display: none;
+  }
+
+  .video-section {
+    padding: 12px;
+  }
+
+  .player-header h3 {
+    font-size: 14px;
+  }
+
+  .action {
+    font-size: 11px;
+    padding: 7px 8px;
+  }
+
+  .pdf-modal {
+    padding: 7px;
+  }
+
+  .pdf-dialog {
+    height: 94vh;
+    padding: 9px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container header-content">
+    <div class="brand">NAWAH<span>.</span></div>
+    <div class="header-label">منصة نواة التعليمية الطبية</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="hero-tag">المكتبة التعليمية</span>
+    <h1>بكالوريوس التمريض</h1>
+    <p>
+      جميع المواد والمحاضرات في مكان واحد.
+      شاهد الفيديوهات مباشرة، واعرض الملفات أو حمّلها بسهولة.
+    </p>
+  </div>
+</section>
+
+<main class="container main">
+  <div class="section-heading">
+    <h2>المواد الدراسية</h2>
+    <p>اختر المادة لعرض المحاضرات المتاحة.</p>
+  </div>
+
+  <div class="subjects" id="subjects"></div>
+
+  <!-- مشغل الفيديو: يبقى داخل الصفحة -->
+  <section class="video-section" id="videoSection" hidden>
+    <div class="player-header">
+      <h3 id="videoTitle">مشاهدة المحاضرة</h3>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <a id="openVideoDrive" class="action watch-btn" href="#" target="_blank" rel="noopener">
+          فتح الفيديو في Google Drive ↗
+        </a>
+        <button class="close-btn" onclick="closeVideo()">
+          إغلاق الفيديو ✕
+        </button>
+      </div>
+    </div>
+
+    <div class="video-frame">
+      <iframe
+        id="videoFrame"
+        src=""
+        title="مشغل المحاضرات"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <p class="player-note">
+      إذا لم يعمل العرض داخل الصفحة، اضغط «فتح الفيديو في Google Drive».
+      يجب أن يكون الملف فيديو وأن تكون صلاحية المشاركة «أي شخص لديه الرابط – مشاهد».
+    </p>
+  </section>
+</main>
+
+<!-- نافذة عرض PDF -->
+<div
+  class="pdf-modal"
+  id="pdfModal"
+  role="dialog"
+  aria-modal="true"
+  aria-label="عرض ملف المحاضرة"
+  onclick="if(event.target === this) closePDF()">
+
+  <div class="pdf-dialog">
+    <div class="player-header">
+      <h3 id="pdfTitle">ملف المحاضرة</h3>
+      <button class="close-btn" onclick="closePDF()">
+        إغلاق ✕
+      </button>
+    </div>
+
+    <iframe id="pdfFrame" src="" title="معاينة ملف PDF"></iframe>
+
+    <div class="modal-actions">
+      <a
+        id="pdfDownload"
+        class="action download-btn"
+        href="#"
+        target="_self">
+        ⬇ تحميل الملف
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p><strong>NAWAH Medical Academy</strong></p>
+    <p class="subtle">التعلّم المستمر يبدأ بخطوة.</p>
+  </div>
+</footer>
+
+<script>
+/*
+=====================================================
+إعداد المحاضرات
+=====================================================
+
+لكل محاضرة:
+videoId = معرّف فيديو Google Drive فقط.
+pdfId   = معرّف ملف PDF على Google Drive فقط.
+
+مثال:
+https://drive.google.com/file/d/ABC123XYZ/view
+
+المعرّف هو:
+ABC123XYZ
+
+إذا لم يتوفر فيديو أو ملف، اترك القيمة فارغة:
+videoId: "",
+pdfId: ""
+
+لا تضع رابط المعاينة الكامل مكان المعرّف.
+*/
+
+const subjects = [
+  {
+    name: "أساسيات التمريض",
+    english: "Fundamentals of Nursing",
+    icon: "✚",
+    code: "fundamentals",
+    lectures: [
+      { title: "المحاضرة الأولى", videoId: "1y6gwa4_m0dGif2GMRZhmZuEf7PIOPR79", pdfId: "" },
+      { title: "المحاضرة الثانية", videoId: "1y6gwa4_m0dGif2GMRZhmZuEf7PIOPR79", pdfId: "" },
+      { title: "المحاضرة الثالثة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الرابعة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الخامسة", videoId: "", pdfId: "" },
+      { title: "المحاضرة السادسة", videoId: "", pdfId: "" }
+    ]
+  },
+  {
+    name: "التمريض الباطني والجراحي",
+    english: "Medical-Surgical Nursing",
+    icon: "✚",
+    code: "adult",
+    lectures: [
+      { title: "المحاضرة الأولى", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثانية", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثالثة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الرابعة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الخامسة", videoId: "", pdfId: "" },
+      { title: "المحاضرة السادسة", videoId: "", pdfId: "" }
+    ]
+  },
+  {
+    name: "تمريض الأمومة",
+    english: "Maternity Nursing",
+    icon: "♡",
+    code: "maternity",
+    lectures: [
+      { title: "المحاضرة الأولى", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثانية", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثالثة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الرابعة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الخامسة", videoId: "", pdfId: "" },
+      { title: "المحاضرة السادسة", videoId: "", pdfId: "" }
+    ]
+  },
+  {
+    name: "تمريض الأطفال",
+    english: "Pediatric Nursing",
+    icon: "✿",
+    code: "pediatrics",
+    lectures: [
+      { title: "المحاضرة الأولى", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثانية", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثالثة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الرابعة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الخامسة", videoId: "", pdfId: "" },
+      { title: "المحاضرة السادسة", videoId: "", pdfId: "" }
+    ]
+  },
+  {
+    name: "تمريض صحة المجتمع",
+    english: "Community Health Nursing",
+    icon: "⌂",
+    code: "community",
+    lectures: [
+      { title: "المحاضرة الأولى", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثانية", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثالثة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الرابعة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الخامسة", videoId: "", pdfId: "" },
+      { title: "المحاضرة السادسة", videoId: "", pdfId: "" }
+    ]
+  },
+  {
+    name: "التمريض النفسي",
+    english: "Psychiatric Nursing",
+    icon: "◉",
+    code: "psych",
+    lectures: [
+      { title: "المحاضرة الأولى", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثانية", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثالثة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الرابعة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الخامسة", videoId: "", pdfId: "" },
+      { title: "المحاضرة السادسة", videoId: "", pdfId: "" }
+    ]
+  },
+  {
+    name: "الإدارة والقيادة في التمريض",
+    english: "Nursing Management & Leadership",
+    icon: "▤",
+    code: "management",
+    lectures: [
+      { title: "المحاضرة الأولى", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثانية", videoId: "", pdfId: "" },
+      { title: "المحاضرة الثالثة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الرابعة", videoId: "", pdfId: "" },
+      { title: "المحاضرة الخامسة", videoId: "", pdfId: "" },
+      { title: "المحاضرة السادسة", videoId: "", pdfId: "" }
+    ]
+  }
+];
+
+/* إنشاء كروت المواد والمحاضرات */
+function renderSubjects() {
+  const container = document.getElementById("subjects");
+
+  container.innerHTML = subjects.map((subject, subjectIndex) => {
+    const lecturesHTML = subject.lectures.map((lecture, lectureIndex) => {
+      const title = `${subject.name} — ${lecture.title}`;
+      const videoAvailable = Boolean(lecture.videoId.trim());
+      const pdfAvailable = Boolean(lecture.pdfId.trim());
+
+      return `
+        <div class="lecture">
+          <div class="lecture-title">
+            ${escapeHTML(lecture.title)}
+          </div>
+
+          <div class="lecture-actions">
+            <button
+              class="action watch-btn"
+              ${videoAvailable ? "" : "disabled"}
+              onclick="playLecture(
+                ${JSON.stringify(lecture.videoId)},
+                ${JSON.stringify(title)}
+              )">
+              ▶ مشاهدة الفيديو
+            </button>
+
+            <button
+              class="action pdf-btn"
+              ${pdfAvailable ? "" : "disabled"}
+              onclick="openPDF(
+                ${JSON.stringify(lecture.pdfId)},
+                ${JSON.stringify(title)}
+              )">
+              ▤ عرض الملف
+            </button>
+
+            <button
+              class="action download-btn"
+              ${pdfAvailable ? "" : "disabled"}
+              onclick="downloadPDF(
+                ${JSON.stringify(lecture.pdfId)}
+              )">
+              ↓ تحميل PDF
+            </button>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    return `
+      <details class="subject-card" ${subjectIndex === 0 ? "open" : ""}>
+        <summary>
+          <div class="subject-icon">${subject.icon}</div>
+
+          <div class="subject-info">
+            <strong>${escapeHTML(subject.name)}</strong>
+            <small>
+              ${escapeHTML(subject.english)} ·
+              ${subject.lectures.length} محاضرات
+            </small>
+          </div>
+
+          <span class="chevron">⌄</span>
+        </summary>
+
+        <div class="lecture-list">
+          ${lecturesHTML}
+        </div>
+      </details>
+    `;
+  }).join("");
+}
+
+/* حماية النصوص المعروضة */
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
+}
+
+/* استخراج معرّف الملف من رابط Drive أو قبول المعرّف مباشرة */
+function getDriveFileId(value) {
+  if (!value) return "";
+  const input = String(value).trim();
+
+  // Accept a bare ID, /file/d/ID/view, open?id=ID, or uc?id=ID.
+  const patterns = [
+    /drive\.google\.com\/file\/d\/([^/?#]+)/i,
+    /[?&]id=([^&#]+)/i,
+    /drive\.google\.com\/open\?id=([^&#]+)/i
+  ];
+
+  for (const pattern of patterns) {
+    const match = input.match(pattern);
+    if (match && match[1]) return decodeURIComponent(match[1]);
+  }
+
+  // Bare Drive IDs normally contain letters, numbers, underscores, and hyphens.
+  if (/^[A-Za-z0-9_-]+$/.test(input)) return input;
+  return "";
+}
+
+function getPreviewURL(fileId) {
+  const id = getDriveFileId(fileId);
+  return id ? "https://drive.google.com/file/d/" + encodeURIComponent(id) + "/preview" : "";
+}
+
+function getViewURL(fileId) {
+  const id = getDriveFileId(fileId);
+  return id ? "https://drive.google.com/file/d/" + encodeURIComponent(id) + "/view" : "";
+}
+
+/* تشغيل الفيديو داخل الصفحة مع رابط بديل مباشر */
+function playLecture(fileId, title) {
+  const id = getDriveFileId(fileId);
+
+  if (!id) {
+    alert("رابط المحاضرة غير مضاف بعد.");
+    return;
+  }
+
+  const section = document.getElementById("videoSection");
+  const frame = document.getElementById("videoFrame");
+  const driveLink = document.getElementById("openVideoDrive");
+
+  document.getElementById("videoTitle").textContent = title;
+  frame.src = getPreviewURL(id);
+  driveLink.href = getViewURL(id);
+  section.hidden = false;
+
+  section.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+/* إيقاف الفيديو وإغلاق المشغل */
+function closeVideo() {
+  document.getElementById("videoFrame").src = "";
+  document.getElementById("openVideoDrive").href = "#";
+  document.getElementById("videoSection").hidden = true;
+}
+
+/* عرض PDF داخل نافذة منبثقة */
+function openPDF(fileId, title) {
+  const id = getDriveFileId(fileId);
+  if (!id) {
+    alert("رابط ملف PDF غير مضاف بعد.");
+    return;
+  }
+
+  const modal = document.getElementById("pdfModal");
+  document.getElementById("pdfTitle").textContent = title;
+  document.getElementById("pdfFrame").src = getPreviewURL(id);
+  document.getElementById("pdfDownload").href = getDownloadURL(id);
+  modal.classList.add("active");
+  document.body.classList.add("modal-open");
+}
+
+/* رابط تنزيل PDF */
+function getDownloadURL(fileId) {
+  const id = getDriveFileId(fileId);
+  return id ? "https://drive.google.com/uc?export=download&id=" + encodeURIComponent(id) : "#";
+}
+
+function downloadPDF(fileId) {
+  const url = getDownloadURL(fileId);
+  if (url === "#") {
+    alert("رابط ملف PDF غير مضاف بعد.");
+    return;
+  }
+  window.open(url, "_blank", "noopener");
+}
+
+/* إغلاق نافذة PDF */
+function closePDF() {
+  document.getElementById("pdfFrame").src = "";
+  document.getElementById("pdfModal").classList.remove("active");
+  document.body.classList.remove("modal-open");
+}
+
+/* زر Escape يغلق نافذة PDF */
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
+    closePDF();
+  }
+});
+
+/* تشغيل الصفحة */
+renderSubjects();
+</script>
+
+</body>
+</html>
